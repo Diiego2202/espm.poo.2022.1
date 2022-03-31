@@ -13,22 +13,27 @@ public class Main{
 
         boolean exit = false;
         while(exit == false){
-            System.out.print("ESPM> ");
-            String input = ler.nextLine().trim().toLowerCase();
-            if("".equals(input)){
+            try {
+                System.out.print("ESPM> ");
+                String input = ler.nextLine().trim().toLowerCase();
+                if("".equals(input)){
 
-            }else if("exit".equals(input)){
-                exit = true;
-            }else if("help".equals(input)){
-                help();
-            }else if("list".equals(input)){
-                listCostumers(banco);
-            } else if("add".equals(input)){
-                addCostumer(banco);
-            }else{
-                System.err.println("Comando inválido");
+                }else if("exit".equals(input)){
+                    exit = true;
+                }else if("help".equals(input)){
+                    help();
+                }else if("list".equals(input)){
+                    listCostumers(banco);
+                } else if("add".equals(input)){
+                    addCostumer(banco);
+                }else if("find".equals(input)){
+                    throw new UnsupportedOperationException();
+                } else{
+                    System.err.println("Comando inválido");
+                }
+            } catch (UnsupportedOperationException e){
+                e.printStackTrace();
             }
-
         }
         System.out.println("Bye bye");
 
