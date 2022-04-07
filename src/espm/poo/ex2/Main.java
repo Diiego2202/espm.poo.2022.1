@@ -66,7 +66,7 @@ public class Main{
 
         Cliente c = new Cliente();
         c.setNome(nome);
-        c.setCpf(cpf);
+        //TODO Criar um jeito de criar pessoa fisica ou juridica
 
         banco.adicionaCliente(c);
     }
