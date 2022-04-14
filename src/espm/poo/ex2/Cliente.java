@@ -1,7 +1,8 @@
 package espm.poo.ex2;
 
-public class Cliente {
+public abstract class Cliente {
     private String nome;
+    private String sobrenome;
     private Conta conta;
 
     public Cliente(){
@@ -9,7 +10,13 @@ public class Cliente {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        String[] nomes = nome.split(" ");
+        this.nome = nomes[0];
+        this.sobrenome = nomes[nomes.length - 1];
+    }
+
+    public void setSobrenome(String sobrenome){
+        this.sobrenome = sobrenome;
     }
 
     public String getNome() {

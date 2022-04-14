@@ -1,6 +1,11 @@
 package espm.poo.ex2;
 
-public class PessoaFisica {
+public class PessoaFisica extends Cliente{
+
+    public PessoaFisica(){
+        super();
+    }
+
     private String cpf;
 
     public String getCpf() {
@@ -9,5 +14,10 @@ public class PessoaFisica {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    @Override
+    public String toString() {
+        return "{nome:" + getNome() + ", cpf:" + getCpf() + "}";
     }
 }

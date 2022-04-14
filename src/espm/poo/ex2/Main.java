@@ -2,6 +2,8 @@ package espm.poo.ex2;
 
 import java.util.Scanner;
 
+import espm.poo.aula02.Pessoa;
+
 public class Main{
 
     private static Banco banco = null;
@@ -52,23 +54,63 @@ public class Main{
     }
 
     private static void listCostumers(Banco banco){
-        banco.getClientes().forEach(c -> System.out.println(c.toString()));
+        banco.getClientes().forEach(c -> {
+            if(c instanceof PessoaFisica){
+                PessoaFisica pf = (PessoaFisica) (c);
+                System.out.println(pf);
+            } else if(c instanceof PessoaJuridica){
+                PessoaJuridica pj = (PessoaJuridica) (c);
+                System.out.println(pj);
+            }
+        });
     }
 
     private static void addCostumer(Banco banco){
         Scanner ler = new Scanner(System.in);
-        
+
         System.out.print("Nome: ");
         String nome = ler.nextLine();
 
-        System.out.print("CPF: ");
-        String cpf = ler.nextLine();
+        TipoPessoa tipoPessoa = inputTipoCliente(); 
 
-        Cliente c = new Cliente();
+        Cliente c = null;
+        switch(tipoPessoa){
+            case Fisica:
+                System.out.print("CPF: ");
+                String cpf = ler.nextLine();
+
+                PessoaFisica pf = new PessoaFisica();
+                pf.setCpf(cpf);
+                c = pf;
+                break;
+            case Juridica:
+                System.out.print("CNPJ: ");
+                String cnpj = ler.nextLine();
+
+                PessoaJuridica pj = new PessoaJuridica();
+                pj.setCnpj(cnpj);
+                c = pj;
+        }
+
         c.setNome(nome);
-        //TODO Criar um jeito de criar pessoa fisica ou juridica
 
         banco.adicionaCliente(c);
+    }
+
+    private static TipoPessoa inputTipoCliente(){
+
+        Scanner ler = new Scanner(System.in);
+        String tp="";
+
+        while(!tp.equals("f") && !tp.equals("j")){
+            System.out.print("Tipo de cliente: ");
+            tp = ler.nextLine().toLowerCase();
+            if(!tp.equals("f") && !tp.equals("j")){
+                System.err.println("F: Física | J: Jurídica");
+            }
+        }
+
+        return tp.equals("f") ? TipoPessoa.Fisica : TipoPessoa.Juridica;
     }
 
 }

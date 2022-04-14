@@ -33,6 +33,11 @@ public class Conta {
         return cliente;
     }
 
+    @Override
+    public String toString() {
+        return "[id:" + this.id + "/Saldo:R$" + this.saldo + "]";
+    }
+
 
     
 }
